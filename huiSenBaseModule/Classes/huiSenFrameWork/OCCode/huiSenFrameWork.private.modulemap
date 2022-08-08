@@ -1,0 +1,18 @@
+
+//
+//  huiSenFrameWork.modulemap
+//  huiSenSmart
+//
+//  Created by jonker.sun on 2022/6/28.
+//
+framework module huiSenFrameWork_Private {
+    module NAOCStudent {
+        header "Reachability.h"
+        header "JKProgressHUD.h"
+        header "JKIndefiniteAnimatedView.h"
+        header "JKProgressAnimatedView.h"
+        header "JKRadialGradientLayer.h"
+        export *
+    }
+    
+}
