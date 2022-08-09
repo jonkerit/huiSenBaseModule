@@ -10,7 +10,7 @@ public extension AriSwift where Base: UIImageView {
     
 }
 
-extension UIImageView {
+public extension UIImageView {
     
     /// 创建可以换色的ImageView （tintColor为空不变色）
     /// - Parameter imageName: 图片名称

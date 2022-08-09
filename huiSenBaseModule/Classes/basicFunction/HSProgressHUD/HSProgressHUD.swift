@@ -8,7 +8,7 @@
 import UIKit
 import HSProgressHUD
 
-enum HSProgressHUDUserInteractionType {
+public enum HSProgressHUDUserInteractionType {
     /// 全屏交互
     case allInteractionType
     /// 全屏不能交互
@@ -105,7 +105,7 @@ enum HSProgressHUDUserInteractionType {
     }()
 }
 
-extension HSProgressHUD{
+public extension HSProgressHUD{
     /// 有加载动画的toast
     /// - Parameters:
     ///   - discribeStr: 提示语

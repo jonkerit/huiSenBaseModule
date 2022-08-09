@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HSPostRequest: HSRequest {
+open class HSPostRequest: HSRequest {
     /// 子类需要重写此类，默认是带token的，不需要带可以重写eg headers = HSNetworkConfiguration.createHeader(isHaveToken:false),加入其他配置比如： path = XXXX
-    override func loadRequest() {
+    open override func loadRequest() {
         super.loadRequest()
         headers = HSNetworkConfiguration.createHeader(isHaveToken: true)
         method = .post

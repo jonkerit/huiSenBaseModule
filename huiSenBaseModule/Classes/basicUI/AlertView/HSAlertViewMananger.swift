@@ -7,17 +7,17 @@
 
 import UIKit
 
-class HSAlertViewMananger: NSObject {
-    static var shared = HSAlertViewMananger()
-    var cacheAlterViewArray = [HSAlertViewBaseController]()
+public class HSAlertViewMananger: NSObject {
+    public static var shared = HSAlertViewMananger()
+    public var cacheAlterViewArray = [HSAlertViewBaseController]()
     // MARK: - LifeCycle
 
     // MARK: - Public
-    func saveAlertView(_ alterView: HSAlertViewBaseController) {
+    public func saveAlertView(_ alterView: HSAlertViewBaseController) {
         cacheAlterViewArray.append(alterView)
     }
     
-    func delegateAlertView(_ alterView: HSAlertViewBaseController) {
+    public func delegateAlertView(_ alterView: HSAlertViewBaseController) {
         if cacheAlterViewArray.contains(alterView) {
             cacheAlterViewArray.remove(at: cacheAlterViewArray.firstIndex(of: alterView)!)
         }

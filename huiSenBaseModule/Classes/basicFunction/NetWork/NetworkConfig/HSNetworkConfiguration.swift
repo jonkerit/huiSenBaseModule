@@ -7,12 +7,12 @@
 
 import UIKit
 
-class HSNetworkConfiguration: NSObject {
+public class HSNetworkConfiguration: NSObject {
     /// 创建一个header
     
     /// - Parameter isHaveToken: 是否带token
     /// - Returns: HTTPHeaders
-    static func createHeader(isHaveToken: Bool) -> HTTPHeaders {
+    public static func createHeader(isHaveToken: Bool) -> HTTPHeaders {
         var tempDict = ["Accept":"application/json", "Content-Type": "application/json"]
         if isHaveToken && !HSAppToken.isEmpty {
             tempDict["Access-Token"] = HSAppToken

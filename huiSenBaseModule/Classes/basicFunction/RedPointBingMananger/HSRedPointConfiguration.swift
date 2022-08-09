@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct HSRedPointKeyType {
+public struct HSRedPointKeyType {
     // 首页通知红点
-    static let homePageNotice = "homePageNoticePiont"
+    public static let homePageNotice = "homePageNoticePiont"
     // 通知中心系统消息红点
-    static let noticeCenterSystem = "noticeCenterSystemPiont"
+    public static let noticeCenterSystem = "noticeCenterSystemPiont"
     // 通知中心设备消息红点
-    static let noticeCenterDevice = "noticeCenterDevicePiont"
+    public static let noticeCenterDevice = "noticeCenterDevicePiont"
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ObjectMapper
+
 
 public struct HSBaseModel: Decodable {
     

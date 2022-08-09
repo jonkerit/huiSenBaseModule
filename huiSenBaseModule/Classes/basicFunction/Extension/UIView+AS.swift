@@ -50,7 +50,7 @@ public extension AriSwift where Base : UIView {
         base.removeGestureRecognizer(tap)
     }
 }
-extension UIView {
+public extension UIView {
     /// 初始化view - 换肤模式
     /// - Parameter backGColorArr: 背景不同皮肤的颜色的的数组
     convenience init(backgroundColorArray:[String]){

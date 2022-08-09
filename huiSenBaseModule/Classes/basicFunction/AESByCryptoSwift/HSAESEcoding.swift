@@ -10,12 +10,12 @@ import CryptoSwift
 fileprivate let HSAPPNetworkAESAESKey = "userpasswordencr"
 fileprivate let HSAPPNetworkIVIVKey = "userpasswordencr"
 
-class HSAESEcoding: NSObject {
+public class HSAESEcoding: NSObject {
     
     /// AES-CBC128位加密
     /// - Parameter stringToEncode: 需要加密的字符串
     /// - Returns: 加密后的字符串
-    static func endCode_AES_CBC(_ stringToEncode:String) -> String {
+    public static func endCode_AES_CBC(_ stringToEncode:String) -> String {
         var encodeString = ""
         let iv: [UInt8] = HSAPPNetworkIVIVKey.bytes
         do {
@@ -32,7 +32,7 @@ class HSAESEcoding: NSObject {
     /// AES-CBC128位解密
     /// - Parameter stringToDecode: 需要解密的字符串
     /// - Returns: 加密后的字符串
-    static func deCode_AES_CBC(_ stringToDecode:String) -> String {
+    public static func deCode_AES_CBC(_ stringToDecode:String) -> String {
         //decode base64
         let data = NSData(base64Encoded: stringToDecode, options: NSData.Base64DecodingOptions.init(rawValue: 0))
         // byte 数组

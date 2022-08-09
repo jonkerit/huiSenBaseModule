@@ -7,10 +7,10 @@
 
 import UIKit
 
-typealias CompletionRedPiontNotice = (HSRedPointModel) -> Void
-class HSRedPointView: UIView {
+public typealias CompletionRedPiontNotice = (HSRedPointModel) -> Void
+public class HSRedPointView: UIView {
     // MARK: - LifeCycle
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
         setUI()
@@ -19,7 +19,7 @@ class HSRedPointView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
     }
@@ -31,7 +31,7 @@ class HSRedPointView: UIView {
     ///   - redKey: 小红点的key
     ///   - isNow: 是否马上给小红点一个原始值
     ///   - completioned: 回调
-    func addRedPoinNotificationObserver(redKey: String, isNow: Bool, completioned:@escaping CompletionRedPiontNotice) {
+    public func addRedPoinNotificationObserver(redKey: String, isNow: Bool, completioned:@escaping CompletionRedPiontNotice) {
         if isNow, let model = HSRedPointBingMananger.standard.getModel(redKey) {
             completioned(model)
         }
@@ -43,7 +43,7 @@ class HSRedPointView: UIView {
     
     /// 给红点值
     /// - Parameter number: 数目（小于0为，展示红点，等于0为隐藏红点，大于0为展示红点数目）
-    func giveLabelVaule(_ number: Int) {
+    public func giveLabelVaule(_ number: Int) {
         if number < 0 {
             self.isHidden = false
             redLabel.isHidden = false
@@ -73,7 +73,7 @@ class HSRedPointView: UIView {
     }
     
     // MARK: - setter & getter
-    lazy var redLabel: UILabel = {
+    public lazy var redLabel: UILabel = {
         var lab = UILabel.init(title: " ", fontColor: UIColor.init(HSAppThemeModel.backGroundLight), fonts: UIFont.font(name: .regular, size: 10), alignment: .center)
         lab.backgroundColor = UIColor.init(HSAppThemeModel.backGroundMain)
         lab.sizeToFit()

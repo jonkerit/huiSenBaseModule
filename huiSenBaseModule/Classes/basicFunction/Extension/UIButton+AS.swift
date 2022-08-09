@@ -10,7 +10,7 @@ import UIKit
 public extension AriSwift where Base: UIButton {
 
 }
-extension UIButton {
+public extension UIButton {
     
     /// 创建button(含标题、标题颜色、标题字体、图名称、背景图名称、目标对象、selector事件、变色)（tintColor为空不变色）
 

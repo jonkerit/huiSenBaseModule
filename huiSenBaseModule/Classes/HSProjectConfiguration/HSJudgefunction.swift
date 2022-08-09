@@ -10,7 +10,7 @@ import UIKit
 public class HSJudgefunction: NSObject {
     // MARK: - Public
     //验证邮箱
-    static func validateEmail(email: String) -> Bool {
+    public static func validateEmail(email: String) -> Bool {
         if email.count == 0 {
             return false
         }
@@ -20,7 +20,7 @@ public class HSJudgefunction: NSObject {
     }
     
     //验证手机号
-    static func isPhoneNumber(phoneNumber:String) -> Bool {
+    public static func isPhoneNumber(phoneNumber:String) -> Bool {
         if phoneNumber.count != 11 {
             return false
         }
@@ -35,28 +35,28 @@ public class HSJudgefunction: NSObject {
     }
     
     //密码正则  8-16位字母、特殊字符、数字两个组合
-    static func isPasswordRuler(password:String) -> Bool {
+    public static func isPasswordRuler(password:String) -> Bool {
         let rule = "^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![@,\\.#%'\\+\\*\\-:;^_`]+$)[@,\\.#%'\\+\\*\\-:;^_`0-9A-Za-z]{8,16}$"
         let regexPassword = NSPredicate(format: "SELF MATCHES %@",rule)
         return regexPassword.evaluate(with: password)
     }
     
     // 数字
-    static func isnumber(input:String) -> Bool {
+    public static func isnumber(input:String) -> Bool {
         let rule = "^^[0-9]*$"
         let regexPassword = NSPredicate(format: "SELF MATCHES %@",rule)
         return regexPassword.evaluate(with: input)
     }
     
     // 表情
-    static func isEmoji(input:String) -> Bool {
+    public static func isEmoji(input:String) -> Bool {
         let rule = "[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"
         let regexPassword = NSPredicate(format: "SELF MATCHES %@",rule)
         return regexPassword.evaluate(with: input)
     }
     
     // 特殊符号
-    static func isSpecialString(input:String) -> Bool {
+    public  static func isSpecialString(input:String) -> Bool {
         let rule = "~,￥,#,&,*,<,>,《,》,(,),[,],{,},【,】,^,@,/,￡,¤,,|,§,¨,「,」,『,』,￠,￢,￣,（,）,——,+,|,$,_,€,¥,？,/,|,，,。,!,！"
         var tempArray = rule.components(separatedBy: ",")
         tempArray.append(",")
@@ -69,7 +69,7 @@ public class HSJudgefunction: NSObject {
     }
     
     /// 所有输入的规则--数字、字母、汉字,➋➌➍➎➏➐➑➒9宫格汉字输入
-    static func inputRule(input: String) -> Bool {
+    public static func inputRule(input: String) -> Bool {
         if "➋➌➍➎➏➐➑➒".contains(input) {
             return true
         }

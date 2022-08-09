@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import ObjectMapper
+
 
 fileprivate var AssociatedKey = "AssociatedKey"
 fileprivate var TrackNextResponderKey = "TrackNextResponderKey"

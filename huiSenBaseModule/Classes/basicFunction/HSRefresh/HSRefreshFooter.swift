@@ -8,7 +8,7 @@
 import UIKit
 import MJRefresh
 
-class HSRefreshFooter: MJRefreshAutoFooter {
+public class HSRefreshFooter: MJRefreshAutoFooter {
     private var refreshStyle:HSRefreshStyle?
 
     /// 创建自定义refreshFooter
@@ -17,7 +17,7 @@ class HSRefreshFooter: MJRefreshAutoFooter {
     ///   - action: Selector
     ///   - refreshStyle: 刷新的样式分类
     /// - Returns: 一个自定义header
-    static func createFooter(With refreshingTarget: Any, action: Selector,refreshStyle:HSRefreshStyle)->HSRefreshFooter{
+    public static func createFooter(With refreshingTarget: Any, action: Selector,refreshStyle:HSRefreshStyle)->HSRefreshFooter{
         let header = HSRefreshFooter.init(refreshingTarget: refreshingTarget, refreshingAction: action)
         header.refreshStyle = refreshStyle
         header.changeRefreshStyle()
@@ -62,7 +62,7 @@ class HSRefreshFooter: MJRefreshAutoFooter {
         gifImage.animationDuration = TimeInterval(CGFloat(gifImageArray.count) * 0.03)
     }
     
-    lazy var stateLabel: UILabel = {
+    public lazy var stateLabel: UILabel = {
         let lab = UILabel.mj_()
         lab.textColor = UIColor.init(HSAppThemeModel.wordGay)
         lab.font = UIFont.font(name: .regular, size: 13)
@@ -74,15 +74,15 @@ class HSRefreshFooter: MJRefreshAutoFooter {
 }
 
 /// 重写父类的方法，属性
-extension HSRefreshFooter {
-    internal override func prepare() {
+public extension HSRefreshFooter {
+    public override func prepare() {
         super.prepare()
         self.mj_h = 80
         addSubview(stateLabel)
         addSubview(gifImage)
     }
     
-    internal override func placeSubviews() {
+    public override func placeSubviews() {
         super.placeSubviews()
         self.stateLabel.sizeToFit()
 
@@ -90,7 +90,7 @@ extension HSRefreshFooter {
         self.gifImage.frame = CGRect(x: self.stateLabel.as.x-5-15, y: self.stateLabel.as.centerY-15/2, width: 15, height: 15)
     }
     
-    internal override var state: MJRefreshState{
+    public override var state: MJRefreshState{
         didSet{
             var tempStr = ""
             gifImage.isHidden = false;
@@ -122,7 +122,7 @@ extension HSRefreshFooter {
         }
     }
    
-    internal override var pullingPercent: CGFloat{
+    public override var pullingPercent: CGFloat{
         didSet{
             if state != .idle || self.gifImageArray.count == 0 {
                 return

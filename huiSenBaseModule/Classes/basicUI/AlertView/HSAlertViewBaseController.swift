@@ -10,18 +10,18 @@ import UIKit
 public typealias clickBackgroundViewEnableClose = () -> Bool
 public typealias clickBackgroundViewDidClose = () -> Void
 
-class HSAlertViewBaseController: UIViewController {
+open class HSAlertViewBaseController: UIViewController {
     /// 点击背景是否能关闭弹窗
-    var clickEnableClose:Bool = true
+    public var clickEnableClose:Bool = true
     /// 关闭弹窗后的回调
-    var clickDidClose:clickBackgroundViewDidClose?
+    public var clickDidClose:clickBackgroundViewDidClose?
     /// 弹窗的圆角
-    var cornerRadius:CGFloat = 20.0
+    public var cornerRadius:CGFloat = 20.0
     /// action的点击回调
-    var clickBlock:((Int, String?)->Void)?
+    public var clickBlock:((Int, String?)->Void)?
     
     // MARK: - LifeCycle
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = UIColor.init("000000", alpha: 0.2)
@@ -34,14 +34,14 @@ class HSAlertViewBaseController: UIViewController {
 
     /// 展示
     /// - Parameter isForce: 是否强制展示（不管是否有弹窗都再次弹一个，否则就是有弹窗压栈一个一个弹）
-    func show(_ isForce: Bool? = false) {
+    public func show(_ isForce: Bool? = false) {
         HSAlertViewMananger.shared.saveAlertView(self)
         if HSAlertViewMananger.shared.cacheAlterViewArray.count <= 1 || isForce! {
             alterView(self)
         }
     }
     /// 取消弹框
-    func dismiss() {
+    public func dismiss() {
         view.endEditing(true)
         HSAlertViewMananger.shared.delegateAlertView(self)
         dismiss(animated: false) {[weak self] in
@@ -78,7 +78,7 @@ class HSAlertViewBaseController: UIViewController {
     }
     
     // MARK: - setter & getter
-    lazy var contentView: UIView = {
+    public lazy var contentView: UIView = {
         var view = UIView()
         view.APPThemeChange()
         view.as.cornerRadius = cornerRadius
@@ -87,7 +87,7 @@ class HSAlertViewBaseController: UIViewController {
 }
 // MARK: - Other Delegate
 extension HSAlertViewBaseController : UIGestureRecognizerDelegate{
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         // 只有点击到vc的view上才生效gestureRecognizer手势
         return gestureRecognizer.view == touch.view
     }

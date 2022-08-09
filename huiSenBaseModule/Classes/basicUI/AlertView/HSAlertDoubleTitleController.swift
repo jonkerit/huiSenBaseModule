@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HSAlertDoubleTitleController: HSAlertViewBaseController {
+public class HSAlertDoubleTitleController: HSAlertViewBaseController {
     // MARK: - Public
     
     /// 创建默认样式的弹窗
@@ -17,7 +17,7 @@ class HSAlertDoubleTitleController: HSAlertViewBaseController {
     ///   - actionButtonTitleArray: 点击按钮的文字
     ///   - clickBlock: 点击回调，int对应actionButtonTitleArray的位置
     @discardableResult
-    static func alertDefaultView(title:String?, nextTitle:String?, contentString:String, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertDoubleTitleController{
+    public static func alertDefaultView(title:String?, nextTitle:String?, contentString:String, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertDoubleTitleController{
         let vc = HSAlertDoubleTitleController.init()
         vc.titleLabel.text = title ?? ""
         vc.titleOtherLabel.text = nextTitle
@@ -31,7 +31,7 @@ class HSAlertDoubleTitleController: HSAlertViewBaseController {
         return vc
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         titleLabel.sizeToFit()
         closeButton.sizeToFit()
@@ -72,33 +72,33 @@ class HSAlertDoubleTitleController: HSAlertViewBaseController {
     }
 
     // MARK: - setter & getter
-    lazy var backView: UIView = {
+    public lazy var backView: UIView = {
         var back = UIView.init()
         back.backgroundColor = UIColor.init(HSAppThemeModel.backGroundLight)
         back.as.cornerRadius = 20
         return back
     }()
-    lazy var titleLabel: UILabel = {
+    public lazy var titleLabel: UILabel = {
         let lab = UILabel.init(title: "设备离线", fontColor: UIColor.init(HSAppThemeModel.wordBlack), fonts: UIFont.font(name: .medium, size: 16), alignment: .center)
         return lab
     }()
-    lazy var titleOtherLabel: UILabel = {
+    public lazy var titleOtherLabel: UILabel = {
         let lab = UILabel.init(title: "请检查", fontColor: UIColor.init(HSAppThemeModel.wordBlack), fonts: UIFont.font(name: .regular, size: 16), alignment: .left)
         return lab
     }()
-    lazy var detailLabel: UILabel = {
+    public lazy var detailLabel: UILabel = {
         let lab = UILabel.init(title: "", fontColor: UIColor.init(HSAppThemeModel.wordGayLight), fonts: UIFont.font(name: .regular, size: 14), alignment: .left)
         lab.numberOfLines = 0
         return lab
     }()
     
-    lazy var closeButton: UIButton = {
+    public lazy var closeButton: UIButton = {
         var btn = UIButton.init(title: nil, titleColor: UIColor.init(HSAppThemeModel.wordMain), titleFont: UIFont.font(name: .regular, size: 16), imageName: "Room_delegate", backGroudImgName: nil, target: self, action: #selector(closeAction), tintColor: HSAppThemeModel.imageGayLight)
         btn.isHidden = clickEnableClose
         return btn
     }()
     
-    lazy var nextButton: UIButton = {
+    public lazy var nextButton: UIButton = {
         var btn = UIButton.init(title: "返回首页", titleColor: UIColor.init(HSAppThemeModel.wordMain), titleFont: UIFont.font(name: .regular, size: 16), imageName: nil, backGroudImgName: nil, target: self, action: #selector(nextAction))
         return btn
     }()

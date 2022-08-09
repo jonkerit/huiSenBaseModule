@@ -40,7 +40,7 @@ public extension AriSwift where Base: UILabel {
         
     }
 }
-extension UILabel{
+public extension UILabel{
     
     /// 创建Label(包含标题、字体颜色、字体大小、对齐方式)
     /// - Parameters:

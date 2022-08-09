@@ -7,8 +7,8 @@
 
 import UIKit
 
-class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
-    static let standard = HSUserAccountDault()
+public class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
+    public static let standard = HSUserAccountDault()
     
     /// 与账户绑定的信息的key需要加入电话号码作为一起作为key
     private func createUserKey(_ key:String) -> String {
@@ -19,7 +19,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
         }
     }
     /// 主题模式
-    var appTheme: HSAppTheme {
+    public var appTheme: HSAppTheme {
         get{
             return  readWithNSUserDefaults(HSUserDefaultsKey.APPThemeSaveKey) as? HSAppTheme ?? .normal
         }
@@ -28,7 +28,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
         }
     }
     /// 查看隐私政策的状态（0:没有查看或者查看了没有操作，1:拒绝，2:同意）
-    var privatePolicyStatus: Int? {
+    public var privatePolicyStatus: Int? {
         get{
             return  readWithNSUserDefaults(HSUserDefaultsKey.APPUserPrivatePolicyKey) as? Int ?? 0
         }
@@ -38,7 +38,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 上一次登录的账号
-    var oldPhone: String? {
+    public var oldPhone: String? {
         get{
             return  readWithNSUserDefaults(HSUserDefaultsKey.APPOldPhoneSaveKey) as? String
         }
@@ -48,7 +48,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 刷新token的时间
-    var requstTokenTime: CGFloat? {
+    public var requstTokenTime: CGFloat? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPRequstTokenTimeSaveKey)) as? CGFloat
         }
@@ -58,7 +58,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 用户的相关基础信息(jsonstring)
-    var userInfo: String? {
+    public var userInfo: String? {
         get{
             return  readWithNSUserDefaults(HSUserDefaultsKey.APPUserInfoSaveKey) as? String
         }
@@ -68,7 +68,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 用户的家庭信息(jsonstring)
-    var homeInfo: String? {
+    public var homeInfo: String? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserHomeInfoSaveKey)) as? String
         }
@@ -78,7 +78,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 用户的家庭对应的设备列表信息(jsonstring)
-    var deviceInfo: String? {
+    public var deviceInfo: String? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserDeviceInfoSaveKey)) as? String
         }
@@ -87,7 +87,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
         }
     }
     /// 选中的家庭(ID)
-    var chioceHomeId: String? {
+    public var chioceHomeId: String? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserChioceHomeIDKey)) as? String
         }
@@ -97,7 +97,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 地图搜索的历史记录（json String）
-    var mapSearchRecord: String? {
+    public var mapSearchRecord: String? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserMapSearchRecordKey)) as? String
         }
@@ -107,7 +107,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     ///  DEBUG下，是否加载H5
-    var H5IsLoad: Bool {
+    public var H5IsLoad: Bool {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserH5loadKey)) as? Bool ?? true
         }
@@ -117,7 +117,7 @@ class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     }
     
     /// 用户的个人设置-震动
-    var userSwitchVibration: Bool? {
+    public var userSwitchVibration: Bool? {
         get{
             return  readWithNSUserDefaults(createUserKey(HSUserDefaultsKey.APPUserSwitchVibrationKey)) as? Bool ?? true
         }

@@ -8,15 +8,15 @@
 import UIKit
 import MJRefresh
 
-enum HSRefreshStyle {
+public enum HSRefreshStyle {
     case HSWhiteRefreshStyle      // 白色圆心
     case HSGoldeRefreshStyle      // 金色圆心
     case HSBlueRefreshStyle       // 蓝色圆心
 }
 
-class HSRefreshHeader: MJRefreshHeader {
+public class HSRefreshHeader: MJRefreshHeader {
     private var refreshStyle:HSRefreshStyle?
-    var popActionBlock:(()->Void)?
+    public var popActionBlock:(()->Void)?
 
     /// 创建自定义refreshheader
     /// - Parameters:
@@ -24,7 +24,7 @@ class HSRefreshHeader: MJRefreshHeader {
     ///   - action: Selector
     ///   - refreshStyle: 刷新的样式分类
     /// - Returns: 一个自定义header
-    static func createHeader(With refreshingTarget: Any, action: Selector,refreshStyle:HSRefreshStyle)->HSRefreshHeader{
+    public static func createHeader(With refreshingTarget: Any, action: Selector,refreshStyle:HSRefreshStyle)->HSRefreshHeader{
         let header = HSRefreshHeader.init(refreshingTarget: refreshingTarget, refreshingAction: action)
         header.refreshStyle = refreshStyle
         header.changeRefreshStyle()
@@ -77,21 +77,21 @@ class HSRefreshHeader: MJRefreshHeader {
 
 /// 重写父类的方法，属性
 extension HSRefreshHeader {
-    internal override func prepare() {
+    public override func prepare() {
         super.prepare()
         self.mj_h = 80
         addSubview(stateLabel)
         addSubview(gifImage)
     }
     
-    internal override func placeSubviews() {
+    public override func placeSubviews() {
         super.placeSubviews()
         self.stateLabel.sizeToFit()
         self.stateLabel.frame = CGRect(x: (self.as.width-self.stateLabel.as.width)/2, y: 20, width: self.stateLabel.as.width, height: self.stateLabel.as.height)
         self.gifImage.frame = CGRect(x: self.stateLabel.as.x-5-15, y: self.stateLabel.as.centerY-15/2, width: 15, height: 15)
     }
     
-    internal override var state: MJRefreshState{
+    public override var state: MJRefreshState{
         didSet{
             var tempStr = ""
             switch state {
@@ -115,7 +115,7 @@ extension HSRefreshHeader {
         }
     }
     
-    internal override var pullingPercent: CGFloat{
+    public override var pullingPercent: CGFloat{
         didSet{
             if state != .idle || self.gifImageArray.count == 0 {
                 return

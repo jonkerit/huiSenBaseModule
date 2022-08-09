@@ -8,11 +8,11 @@
 import Foundation
 
 /// 黛马默认的请求Network配置
-let HSDefaultNetwork = HSNetwork(HSNetworkTarget())
+public let HSDefaultNetwork = HSNetwork(HSNetworkTarget())
 
-struct HSNetworkTarget: HSTarget {
-    var baseURLString: String = HSAPPBaseUrl
-    var IPURLString: String? {
+public struct HSNetworkTarget: HSTarget {
+    public var baseURLString: String = HSAPPBaseUrl
+    public var IPURLString: String? {
         get {
             return storeIPURLString
         }
@@ -21,9 +21,9 @@ struct HSNetworkTarget: HSTarget {
         }
     }
     // 默认JSONEncoding打包数据，可以在HSBaseRequest中修改
-    var parameterEncoding: ParameterEncoding = JSONEncoding.default
+    public var parameterEncoding: ParameterEncoding = JSONEncoding.default
     
-    var allHostsMustBeEvaluated: Bool = false
+    public var allHostsMustBeEvaluated: Bool = false
     
 //    var serverEvaluators: [String : ServerTrustEvaluating]? {
 //        #if DEBUG
@@ -41,9 +41,9 @@ struct HSNetworkTarget: HSTarget {
     
 //    var clientTrustPolicy: (secPKCS12Path: String, password: String)? = (secPKCS12Path: Bundle.main.path(forResource: "github", ofType: "p12") ?? "", password: "123456")
     
-    var plugins: [HSPlugin]? = [HSNetwworkPlugin()]
+    public var plugins: [HSPlugin]? = [HSNetwworkPlugin()]
     
-    var reachabilityListener: ReachabilityListener? {
+    public var reachabilityListener: ReachabilityListener? {
         return { (status) in
             switch status {
                 
@@ -67,9 +67,9 @@ struct HSNetworkTarget: HSTarget {
         }
     }
     
-    var storeIPURLString: String?
+    public var storeIPURLString: String?
     // 需要修改
-    var status: (codeKey: String, successCode: Int, messageKey: String?, dataKeyPath: String?)?{
+    public var status: (codeKey: String, successCode: Int, messageKey: String?, dataKeyPath: String?)?{
         return (codeKey: "code", successCode: 200, messageKey: "err_msg", dataKeyPath: "data")
     }
 }

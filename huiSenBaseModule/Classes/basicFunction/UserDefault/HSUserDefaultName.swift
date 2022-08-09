@@ -5,19 +5,18 @@
 //  Created by jonkersun on 2021/6/9.
 //
 
-struct HSUserDefaultsKey {
-    static let APPThemeSaveKey = "HSAPPThemeSave"
-    static let APPOldPhoneSaveKey = "HSAPPOldPhoneSave"
-    static let APPRequstTokenTimeSaveKey = "HSAPPRequstTokenTimeSave"
-    static let APPUserInfoSaveKey = "HSAPPUserInfoSave"
-    static let APPUserHomeInfoSaveKey = "HSAPPUserHomeInfoSave"
-    static let APPUserDeviceInfoSaveKey = "HSAPPUserDeviceInfoSave"
-    static let APPUserChioceHomeIDKey = "HSAPPUserChioceHomeID"
-    static let APPUserMapSearchRecordKey = "HSAPPUserMapSearchRecord"
-    static let APPUserPrivatePolicyKey = "APPUserPrivatePolicy"
-    static let APPUserH5loadKey = "APPUserH5loadKey"
-    static let APPUserSwitchVibrationKey = "APPUserSwitchVibrationKey"
-
+public struct HSUserDefaultsKey {
+    public static let APPThemeSaveKey = "HSAPPThemeSave"
+    public static let APPOldPhoneSaveKey = "HSAPPOldPhoneSave"
+    public static let APPRequstTokenTimeSaveKey = "HSAPPRequstTokenTimeSave"
+    public static let APPUserInfoSaveKey = "HSAPPUserInfoSave"
+    public static let APPUserHomeInfoSaveKey = "HSAPPUserHomeInfoSave"
+    public static let APPUserDeviceInfoSaveKey = "HSAPPUserDeviceInfoSave"
+    public static let APPUserChioceHomeIDKey = "HSAPPUserChioceHomeID"
+    public static let APPUserMapSearchRecordKey = "HSAPPUserMapSearchRecord"
+    public static let APPUserPrivatePolicyKey = "APPUserPrivatePolicy"
+    public static let APPUserH5loadKey = "APPUserH5loadKey"
+    public static let APPUserSwitchVibrationKey = "APPUserSwitchVibrationKey"
 }
 
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HSH5APIRequest: NSObject {
+public class HSH5APIRequest: NSObject {
     
     /// H5请求API
     /// - Parameters:
@@ -15,7 +15,7 @@ class HSH5APIRequest: NSObject {
     ///   - parameters: 参数,可以是string、[Any]、[String： Any]
     ///   - completioned: 回调
     /// - Returns: 请求
-    static func requstH5ApiData(apiName:String, parameters:Any?, completioned:@escaping HSCompletionStringClosure) {
+    public static func requstH5ApiData(apiName:String, parameters:Any?, completioned:@escaping HSCompletionStringClosure) {
             var patchURL = apiName
             if !apiName.contains("app/api/") {
                 patchURL = "/app/api/\(apiName)"

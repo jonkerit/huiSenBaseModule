@@ -9,19 +9,19 @@ import UIKit
 
 //typealias HSAlerttCostomContentViewBlock =
 
-class HSAlertViewController: HSAlertViewBaseController {
+public class HSAlertViewController: HSAlertViewBaseController {
     /// 自定义view
-    var customViewBlock:((_ alertViewController:HSAlertViewController, _ maxWidth:CGFloat, _ maxHeight:CGFloat)->UIView)?
+    public var customViewBlock:((_ alertViewController:HSAlertViewController, _ maxWidth:CGFloat, _ maxHeight:CGFloat)->UIView)?
     
     private var customeView:UIView?
     private var isTextfield:Bool = false
     // MARK: - LifeCycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createCustomView()
     }
@@ -34,7 +34,7 @@ class HSAlertViewController: HSAlertViewBaseController {
     ///   - actionButtonTitleArray: 点击按钮的文字
     ///   - clickBlock: 点击回调，int对应actionButtonTitleArray的位置
     @discardableResult
-    static func alertDefaultView(title:String?, contentString:String, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertViewController{
+    public static func alertDefaultView(title:String?, contentString:String, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertViewController{
         let vc = HSAlertViewController.init()
         vc.alertTitle.text = title ?? ""
         vc.contentLabel.text = contentString
@@ -54,7 +54,7 @@ class HSAlertViewController: HSAlertViewBaseController {
     ///   - actionButtonTitleArray: 点击按钮的文字
     ///   - clickBlock: 点击回调，int对应actionButtonTitleArray的位置
     @discardableResult
-    static func alertDefaultTextFieldView(title:String?, contentString:String, placeholder: String?, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertViewController{
+    public static func alertDefaultTextFieldView(title:String?, contentString:String, placeholder: String?, actionButtonTitleArray:[String]?, clickBlock:((Int, String?)->Void)? = nil) -> HSAlertViewController{
         let vc = HSAlertViewController.init()
         vc.alertTitle.text = title
         vc.alertTextField.text = contentString
@@ -225,14 +225,14 @@ class HSAlertViewController: HSAlertViewBaseController {
 
     // MARK: - setter & getter
     /// 标题
-    lazy var alertTitle: UILabel = {
+    public lazy var alertTitle: UILabel = {
         let label = UILabel.init(title: "标题", fontColor: UIColor.init(HSAppThemeModel.wordBlack), fonts: UIFont.font(name: .medium, size: 16), alignment: .center)
         label.sizeToFit()
         return label
     }()
     
     /// 内容
-    lazy var alertTextField: UITextField = {
+    public lazy var alertTextField: UITextField = {
         var text = UITextField.init(textColors: UIColor.init(HSAppThemeModel.wordBlack), textFont: UIFont.font(name: .regular, size: 16), placeholders: nil, placeholdersFont: UIFont.font(name: .regular, size: 16), placeholdersColor: UIColor.init(HSAppThemeModel.wordGay), cornerRadius: 20, layColor: UIColor.init(HSAppThemeModel.lineBordGay), boardStyle: UITextField.BorderStyle.none, keyBoardStyles: .default, rightWidth:50)
         text.as.height = 40
         text.becomeFirstResponder()
@@ -242,41 +242,41 @@ class HSAlertViewController: HSAlertViewBaseController {
     }()
     
     /// 内容
-    lazy var contentLabel: UILabel = {
+    public lazy var contentLabel: UILabel = {
         let lab = UILabel.init(title: " ", fontColor: UIColor.init(HSAppThemeModel.wordBlack), fonts: UIFont.font(name: .regular, size: 16), alignment: .left)
         lab.numberOfLines = 0
         lab.sizeToFit()
         return lab
     }()
     /// 提示内容
-    lazy var warmLabel: UILabel = {
+    public lazy var warmLabel: UILabel = {
         let lab = UILabel.init(title: " ", fontColor: UIColor.init(HSAppThemeModel.wordMain), fonts: UIFont.font(name: .regular, size: 11), alignment: .left)
         lab.numberOfLines = 0
         lab.sizeToFit()
         return lab
     }()
     
-    lazy var delegateButton: UIButton = {
+    public lazy var delegateButton: UIButton = {
         let btn = UIButton.init(title: nil, titleColor: nil, titleFont: nil, imageName: "Room_delegate", backGroudImgName: nil, target: self, action: #selector(delegateDaction), tintColor: HSAppThemeModel.imageGayLight)
         btn.sizeToFit()
         return btn
     }()
-    lazy var closeButton: UIButton = {
+    public lazy var closeButton: UIButton = {
         var btn = UIButton.init(title: nil, titleColor: UIColor.init(HSAppThemeModel.wordMain), titleFont: UIFont.font(name: .regular, size: 16), imageName: "Room_delegate", backGroudImgName: nil, target: self, action: #selector(closeAction), tintColor: HSAppThemeModel.imageGayLight)
         btn.isHidden = clickEnableClose
         btn.sizeToFit()
         return btn
     }()
     /// 按钮数组
-    lazy var buttonArray = [UIButton]()
+    public lazy var buttonArray = [UIButton]()
 }
 // MARK: - Other Delegate
 extension HSAlertViewController: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty {
             warmLabel.text = ""
             return true

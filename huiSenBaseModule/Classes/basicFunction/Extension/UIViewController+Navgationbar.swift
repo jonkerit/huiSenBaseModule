@@ -6,7 +6,7 @@
 //
 
 import UIKit
-extension AriSwift where Base : UIViewController {
+public extension AriSwift where Base : UIViewController {
     @discardableResult
     /// 添加导航栏 --- 默认灰色返回键 ( 只包含返回尖头和标题，要添加其他控件，可在返回的View上添加)
     public func addNormalNavigationBar(_ titleString:String) -> HSNavigationBarView {
@@ -80,12 +80,12 @@ extension AriSwift where Base : UIViewController {
 
 //MARK: - Custom NavigationBar
 public class HSNavigationBarView: UIView {
-    var popActionBlock:(()->Void)?
-    var titleView: UILabel!
-    var line = UIView()
-    var backButton: UIButton!
+    public var popActionBlock:(()->Void)?
+    public var titleView: UILabel!
+    public var line = UIView()
+    public var backButton: UIButton!
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white
         backButton = UIButton.init(title: nil, titleColor: nil, titleFont: nil, imageName: "Navbar_back", backGroudImgName: nil, target: self, action:  #selector(popBack),tintColor: HSAppThemeModel.wordBlack)
@@ -105,7 +105,7 @@ public class HSNavigationBarView: UIView {
     /// - Parameters:
     ///   - customViewArr: 自定义View的数组
     ///   - spaceWidth: view的间隙
-    func createRightViewBar(_ customViewArr:[UIView], _ spaceWidth:CGFloat = 10) {
+    public func createRightViewBar(_ customViewArr:[UIView], _ spaceWidth:CGFloat = 10) {
         var tempSpace:CGFloat = 0.0
         for (i,customView) in customViewArr.enumerated() {
             addSubview(customView)
@@ -114,11 +114,11 @@ public class HSNavigationBarView: UIView {
             customView.frame = CGRect(x: UIScreen.as.screenWidth-tempSpace-spaceWidth*CGFloat(i)-15, y: UIScreen.as.statusBarHeight+(44 - customView.as.height)/2, width: customView.as.width, height: customView.as.height)
         }
     }
-    required convenience init?(coder aDecoder: NSCoder) {
+    public required convenience init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - set
-    func setupNavigationBar(_ backImage:UIImage, titleString:String) {
+    public func setupNavigationBar(_ backImage:UIImage, titleString:String) {
         backButton.setImage(backImage, for: UIControl.State.normal)
         titleView.text = titleString
     }

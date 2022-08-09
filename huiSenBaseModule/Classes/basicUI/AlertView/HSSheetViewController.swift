@@ -8,19 +8,17 @@
 import UIKit
 import SwiftUI
 
-//typealias HSAlerttCostomContentViewBlock =
-
-class HSSheetViewController: HSAlertViewBaseController {
+public class HSSheetViewController: HSAlertViewBaseController {
     /// 自定义view
     var customViewBlock:((_ alertViewController:HSSheetViewController, _ maxWidth:CGFloat, _ maxHeight:CGFloat)->UIView)?
     
     private var customeView:UIView?
     // MARK: - LifeCycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetContentViewSize()
 

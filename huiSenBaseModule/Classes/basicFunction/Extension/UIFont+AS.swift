@@ -9,7 +9,7 @@ import UIKit
 public extension AriSwift where Base: UIFont {
 
 }
-extension UIFont{
+public extension UIFont{
     enum ESFontName: String {
         case regular = "PingFangSC-Regular"
         case light   = "PingFangSC-Light"

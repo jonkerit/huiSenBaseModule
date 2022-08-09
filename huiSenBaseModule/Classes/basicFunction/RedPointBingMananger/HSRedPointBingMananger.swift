@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HSRedPointBingMananger: NSObject {
-    static var standard = HSRedPointBingMananger()
-    var redPiontModelArray: [HSRedPointModel] = [HSRedPointModel]()
+public class HSRedPointBingMananger: NSObject {
+    public static var standard = HSRedPointBingMananger()
+    public var redPiontModelArray: [HSRedPointModel] = [HSRedPointModel]()
     // MARK: - LifeCycle
     override init() {
         super.init()
@@ -18,7 +18,7 @@ class HSRedPointBingMananger: NSObject {
     }
     // MARK: - Public
     /// 给节点设置总的数字
-    func giveKeyVaule(key: String, vaule: Int) {
+    public func giveKeyVaule(key: String, vaule: Int) {
         guard let tempModel = getModel(key) else {
             HSDebugLog("注意：没有\(key)这个key的model")
             return }
@@ -30,7 +30,7 @@ class HSRedPointBingMananger: NSObject {
     }
     
     // 获取某个key对应的红点数量
-    func getAllRedPointNumber(_ key: String) -> Int {
+    public func getAllRedPointNumber(_ key: String) -> Int {
         guard let tempModel = getModel(key) else {
             HSDebugLog("注意：没有\(key)这个key的model")
             return 0}
@@ -38,7 +38,7 @@ class HSRedPointBingMananger: NSObject {
     }
     
     // 根据key获取其红点model
-    func getModel(_ key: String) -> HSRedPointModel? {
+    public func getModel(_ key: String) -> HSRedPointModel? {
         var tempModel: HSRedPointModel?
         for model in redPiontModelArray {
             if model.selfKey == key {
@@ -53,13 +53,13 @@ class HSRedPointBingMananger: NSObject {
     }
     
     /// 双向绑定节点
-    func bingKeyEachother(oneKey: String, twoKey: String) {
+    public func bingKeyEachother(oneKey: String, twoKey: String) {
         bingKey(childKey: oneKey, superKey: twoKey)
         bingKey(childKey: twoKey, superKey: oneKey)
     }
     
     /// 双向绑定节点
-    func unBingKeyEachother(oneKey: String, twoKey: String) {
+    public func unBingKeyEachother(oneKey: String, twoKey: String) {
         unBingKey(childKey: oneKey, superKey: twoKey)
         unBingKey(childKey: twoKey, superKey: oneKey)
     }
@@ -69,7 +69,7 @@ class HSRedPointBingMananger: NSObject {
     /// - Parameters:
     ///   - childKey: 作为子节点
     ///   - superKey: 作为父节点
-    func bingKey(childKey: String, superKey: String) {
+    public func bingKey(childKey: String, superKey: String) {
         var childModel:HSRedPointModel?
         var superModel:HSRedPointModel?
 
@@ -128,7 +128,7 @@ class HSRedPointBingMananger: NSObject {
     /// - Parameters:
     ///   - childKey: 作为子节点
     ///   - superKey: 作为父节点
-    func unBingKey(childKey: String, superKey: String) {
+    public func unBingKey(childKey: String, superKey: String) {
         var childModel:HSRedPointModel?
         var superModel:HSRedPointModel?
 

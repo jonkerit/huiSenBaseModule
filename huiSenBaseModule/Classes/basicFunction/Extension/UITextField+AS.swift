@@ -11,7 +11,7 @@ public extension AriSwift where Base : UITextField{
     
 }
 
-extension UITextField {
+public extension UITextField {
     /// 初始化UITextField（文本字体的颜色、字体大小、含占位文字）
     /// - Parameters:
     ///   - placeholders: 占位文字
