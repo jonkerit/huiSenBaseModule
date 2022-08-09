@@ -96,7 +96,7 @@ public extension AriSwift where Base: UIImage {
     }
     
     static func getBundle(_ bundleName: String)-> Bundle? {
-        let frameworkBundle = Bundle.as.bundlePath(swiftClass: ViewController.self, resource: "huiSenFrameWork", ofType: "framework")
+        let frameworkBundle = Bundle.as.bundlePath(swiftClass: HSWebViewController.self, resource: "huiSenFrameWork", ofType: "framework")
         guard let sourcepath = frameworkBundle.path(forResource: bundleName, ofType: "bundle") else { return nil }
         guard let sourceBundle = Bundle.init(path: sourcepath) else { return nil }
         return sourceBundle

@@ -27,7 +27,7 @@ class HSCustomRequest: HSRequest {
     }
 
     func createCustomRequest() -> URLRequestConvertible?  {
-        let searchURL = NSURL(string: HSAPPNetworkConfiguration.HSAPPBaseUrl + path as String)
+        let searchURL = NSURL(string: HSAPPBaseUrl + path as String)
         var customRequest = URLRequest.init(url:searchURL! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
         customRequest.headers = headers ?? HSNetworkConfiguration.createHeader(isHaveToken: true)
         var methodString = "POST"

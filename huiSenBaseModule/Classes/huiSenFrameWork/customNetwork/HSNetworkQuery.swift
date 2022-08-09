@@ -8,7 +8,7 @@
 import UIKit
 import CoreTelephony
 import AdSupport
-import Reachability
+//import Reachability
 
 class HSNetworkQuery: NSObject {
     // MARK: - Public

@@ -25,7 +25,9 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'jonker.sun' => 'sunpengcheng@huisensmart.com' }
-  s.source           = { :git => 'https://github.com/jonkerit/huiSenBaseModule.git', :tag => s.version.to_s }
+  #s.source           = { :git => 'https://github.com/jonkerit/huiSenBaseModule.git', :tag => s.version.to_s }
+    s.source           = { :git => '', :tag => s.version.to_s }
+
   
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -38,10 +40,12 @@ TODO: Add long description of the pod here.
   #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.dependency 'MJRefresh'
+  s.dependency 'MJRefresh', '~> 3.7.5'
   s.dependency 'Alamofire'
   s.dependency 'ObjectMapper'
-  s.dependency 'LKDBHelper'
+  s.dependency 'LKDBHelper', '~> 2.5.9'
   s.dependency 'SSZipArchive'
   s.dependency 'CryptoSwift'
+  s.dependency 'HSProgressHUD'
+    
 end

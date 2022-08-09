@@ -14,8 +14,8 @@ class HSNetworkConfiguration: NSObject {
     /// - Returns: HTTPHeaders
     static func createHeader(isHaveToken: Bool) -> HTTPHeaders {
         var tempDict = ["Accept":"application/json", "Content-Type": "application/json"]
-        if isHaveToken && !HSAPPNetworkConfiguration.HSAppToken.isEmpty {
-            tempDict["Access-Token"] = HSAPPNetworkConfiguration.HSAppToken
+        if isHaveToken && !HSAppToken.isEmpty {
+            tempDict["Access-Token"] = HSAppToken
         }
         return HTTPHeaders.init(tempDict)
     }

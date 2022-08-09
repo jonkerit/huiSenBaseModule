@@ -15,7 +15,7 @@ enum HSFNetworkTargetType {
 }
 
 struct HSFNetworkTarget {
-    var baseURLString: String  = HSAPPNetworkConfiguration.HSAPPBaseUrl
+    var baseURLString: String  = HSAPPBaseUrl
     var headers = [String : String]()
     var overTime:Float = 10.0
     
@@ -23,7 +23,7 @@ struct HSFNetworkTarget {
         switch NetworkTargetType {
         case .Default:
             do {
-            baseURLString = HSAPPNetworkConfiguration.HSAPPBaseUrl
+            baseURLString = HSAPPBaseUrl
             self.overTime = overTime
             headers = ["Accept":"application/json","Content-Type":"application/json","mobileType":"IOS"]
             // to do

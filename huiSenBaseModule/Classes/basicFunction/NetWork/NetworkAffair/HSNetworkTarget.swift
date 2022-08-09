@@ -11,7 +11,7 @@ import Foundation
 let HSDefaultNetwork = HSNetwork(HSNetworkTarget())
 
 struct HSNetworkTarget: HSTarget {
-    var baseURLString: String = HSAPPNetworkConfiguration.HSAPPBaseUrl
+    var baseURLString: String = HSAPPBaseUrl
     var IPURLString: String? {
         get {
             return storeIPURLString
