@@ -10,10 +10,10 @@ import CoreTelephony
 import AdSupport
 //import Reachability
 
-class HSNetworkQuery: NSObject {
+public class HSNetworkQuery: NSObject {
     // MARK: - Public
     /// 给请求的url添加query（？后）加入公共参数
-    static func addQueryParameters(_ URLString: String) -> String {
+    public static func addQueryParameters(_ URLString: String) -> String {
 //        return URLString
         let query = HSNetworkQuery()
         let parameters = query.createPublicParameters()
@@ -30,7 +30,7 @@ class HSNetworkQuery: NSObject {
         return "\(URLString)?\(encodingURL)"
     }
     
-    static func getNetworkStatus() -> String{
+    public static func getNetworkStatus() -> String{
         let query = HSNetworkQuery()
         return query.netconnType()
     }

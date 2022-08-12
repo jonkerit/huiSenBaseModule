@@ -51,7 +51,7 @@ let HSH5SetDeviceInfoMehod = "setDeviceInfo"
 let HSH5ComeBackActionMehod = "onBackPage"
 
 // MARK: --- 设备详情的相关API接口
-public struct HSH5NetworkUrl {
+struct HSH5NetworkUrl {
     /// 获取H5压缩包最新版本信息
     public static let getH5ZipInfoURLString = "/app/api/cui/check_update"
     /// 设备操作

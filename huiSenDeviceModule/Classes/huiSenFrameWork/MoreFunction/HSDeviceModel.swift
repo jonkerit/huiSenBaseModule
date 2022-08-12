@@ -8,44 +8,44 @@
 import UIKit
 import ObjectMapper
 
-class HSDeviceModel: Mappable {
+public class HSDeviceModel: Mappable {
     /// 设备id
-    var device_id : String = ""
+    public var device_id : String = ""
     /// 产品id
-    var product_id : String = ""
+    public var product_id : String = ""
     /// 设备名称
-    var device_name : String = ""
+    public var device_name : String = ""
     /// 设备logo url
-    var logo_url : String = ""
+    public var logo_url : String = ""
     /// 所在楼层id
-    var home_id : String = ""
+    public var home_id : String = ""
     /// 所在房间id
-    var room_id : String = ""
+    public var room_id : String = ""
     /// 所在房间name
-    var room_name : String = ""
+    public var room_name : String = ""
     /// 设备是否在线
-    var status : Bool = false
+    public var status : Bool = false
     /// 网关ID
-    var gateway: String = ""
+    public var gateway: String = ""
     /// 设备属性
-    var entry : [[String: Any]] = []
+    public var entry : [[String: Any]] = []
     /// 设备属性的model数组
-    var entryModelArray : [HSDeviceEntryModel] = []
+    public var entryModelArray : [HSDeviceEntryModel] = []
     /// 非空则是开关的条目名称
-    var isSwitch : Bool = false
+    public var isSwitch : Bool = false
     /// 开关当前状态值 bool
-    var switchList : [HSDeviceSwitchModel] = []
+    public var switchList : [HSDeviceSwitchModel] = []
     /// 是开关的情况下，是否是开启状态
-    var isSwitchOpen: Bool = false
+    public var isSwitchOpen: Bool = false
     /// 是灯的情况下，是否是开启状态
-    var switchOpenDesc: String = ""
+    public var switchOpenDesc: String = ""
     /// 网关状态-1，没有状态 0-加载中  1-在线 2-离线
-    var distributionNetworkStatus: Int = -1
-    required init?(map: Map) {
+    public var distributionNetworkStatus: Int = -1
+    required public init?(map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
        device_id <- map["device_id"]
        product_id <- map["product_id"]
        device_name <- map["device_name"]
@@ -64,12 +64,12 @@ class HSDeviceModel: Mappable {
        switchOpenDesc = createDesc()
     }
     /// 改变网关的状态
-    func changeGetwayStatus(_ status: Int) {
+    public func changeGetwayStatus(_ status: Int) {
         distributionNetworkStatus = status
         switchOpenDesc = createDesc()
      }
     
-    func isOpen() ->Bool {
+    public func isOpen() ->Bool {
         for (_, model) in self.switchList.enumerated() {
             if model.value {
                 return true
@@ -78,7 +78,7 @@ class HSDeviceModel: Mappable {
         return false
     }
     
-    func createDesc() ->String {
+    public func createDesc() ->String {
         if distributionNetworkStatus == 0 {
             return self.room_name+" | 加载中"
         }
@@ -115,31 +115,31 @@ class HSDeviceModel: Mappable {
     }
 }
 
-class HSDeviceEntryModel: Mappable {
+public class HSDeviceEntryModel: Mappable {
     /// 属性名
-    var entry : String = ""
+    public var entry : String = ""
     /// 属性值
-    var value : String = ""
-    required init?(map: Map) {
+    public var value : String = ""
+    required public init?(map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
        entry <- map["name"]
        value <- map["value"]
     }
 }
 
-class HSDeviceSwitchModel: Mappable {
+public class HSDeviceSwitchModel: Mappable {
     /// 属性名
-    var name : String = ""
+    public var name : String = ""
     /// 属性值
-    var value : Bool = false
-    required init?(map: Map) {
+    public var value : Bool = false
+    public required init?(map: Map) {
         
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
        name <- map["name"]
        value <- map["value"]
     }

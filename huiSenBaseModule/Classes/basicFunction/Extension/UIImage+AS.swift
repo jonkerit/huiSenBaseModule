@@ -70,7 +70,7 @@ public extension AriSwift where Base: UIImage {
             var sourceBundle:Bundle?
             if huiSenFrameWorkSourceBundle != nil {
                 sourceBundle = huiSenFrameWorkSourceBundle
-            }else if let tempBundle = getBundle(bundleName){
+            }else if let tempBundle = getBundle(bundleName: bundleName, swiftClass: HSNowVCClass){
                 sourceBundle = tempBundle
                 huiSenFrameWorkSourceBundle = tempBundle
             }else{
@@ -95,8 +95,8 @@ public extension AriSwift where Base: UIImage {
         return tempImage
     }
     
-    static func getBundle(_ bundleName: String)-> Bundle? {
-        let frameworkBundle = Bundle.as.bundlePath(swiftClass: HSWebViewController.self, resource: "huiSenFrameWork", ofType: "framework")
+    static func getBundle(bundleName: String, swiftClass:  Swift.AnyClass)-> Bundle? {
+        let frameworkBundle = Bundle.as.bundlePath(swiftClass: swiftClass, resource: "huiSenFrameWork", ofType: "framework")
         guard let sourcepath = frameworkBundle.path(forResource: bundleName, ofType: "bundle") else { return nil }
         guard let sourceBundle = Bundle.init(path: sourcepath) else { return nil }
         return sourceBundle
