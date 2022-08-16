@@ -31,7 +31,16 @@ class HSWebViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         customNavView.titleView.text = titleString
-        
+        if HSAPPBaseUrl.isEmpty {
+            #if DEBUG
+            HSAPPBaseUrl = "https://staging.huisensmart.com"
+            //    static let HSAPPBaseUrl = "http://106.15.107.104:7711"
+            #elseif BATE
+            HSAPPBaseUrl = "https://staging.huisensmart.com"
+            #else
+            HSAPPBaseUrl = "https://api.huisensmart.com"
+            #endif
+        }
         // 清楚本地缓存
         clearCookies()
         // 加载本地H5资源
