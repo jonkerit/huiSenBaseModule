@@ -9,16 +9,18 @@ import UIKit
  
 public typealias clickBackgroundViewEnableClose = () -> Bool
 public typealias clickBackgroundViewDidClose = () -> Void
+/// 弹窗的相对屏幕底部安全区的位置
+public var HSAlertViewBaseY: CGFloat = 18.0
 
 open class HSAlertViewBaseController: UIViewController {
     /// 点击背景是否能关闭弹窗
-    public var clickEnableClose:Bool = true
+    public var clickEnableClose :Bool = true
     /// 关闭弹窗后的回调
-    public var clickDidClose:clickBackgroundViewDidClose?
+    public var clickDidClose: clickBackgroundViewDidClose?
     /// 弹窗的圆角
-    public var cornerRadius:CGFloat = 20.0
+    public var cornerRadius: CGFloat = 20.0
     /// action的点击回调
-    public var clickBlock:((Int, String?)->Void)?
+    public var clickBlock: ((Int, String?)->Void)?
     
     // MARK: - LifeCycle
     open override func viewDidLoad() {

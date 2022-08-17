@@ -20,9 +20,9 @@ public var HSAPPBaseUrl = ""
 public var HSAppToken = ""
 // 存储的账户标识(一般是账号)
 public var HSUserKey = ""
+// 定位SDK的位置
 #if huiSenFrameWork
 public var HSNowVCClass:Swift.AnyClass = HSWebOpenFunction.self
 #else
 public var HSNowVCClass:Swift.AnyClass = UIViewController.self
 #endif
-// 定位SDK的位置

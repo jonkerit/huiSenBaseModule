@@ -103,7 +103,7 @@ public class HSAlertViewController: HSAlertViewBaseController {
         DispatchQueue.main.async {
             let time = notification.userInfo?["UIKeyboardAnimationDurationUserInfoKey"] as? TimeInterval ?? 0
             UIView.animate(withDuration: time, animations: {
-                self.contentView.as.y = self.view.as.bottom-self.contentView.as.height-18-UIScreen.as.tabBarSafeHeight
+                self.contentView.as.y = self.view.as.bottom-self.contentView.as.height-HSAlertViewBaseY-UIScreen.as.tabBarSafeHeight
             })
         }
      }
@@ -170,7 +170,7 @@ public class HSAlertViewController: HSAlertViewBaseController {
         
         contentView.as.height = tempView.as.bottom+(buttonArray.count > 0 ? 18:40)
         contentView.as.centerX = view.as.centerX
-        contentView.as.y = view.as.bottom-contentView.as.height-18-UIScreen.as.tabBarSafeHeight
+        contentView.as.y = view.as.bottom-contentView.as.height-HSAlertViewBaseY-UIScreen.as.tabBarSafeHeight
 
     }
     

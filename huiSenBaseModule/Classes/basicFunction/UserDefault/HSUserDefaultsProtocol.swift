@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol HSUserDefaultsProtocol {}
+public protocol HSUserDefaultsProtocol {}
 
 extension HSUserDefaultsProtocol{
     /// 存储数据
-    func saveWithNSUserDefaults(_ vaule:Any?, _ key:String) {
+    public func saveWithNSUserDefaults(_ vaule:Any?, _ key:String) {
         // 1、利用NSUserDefaults存储数据
         let defaults = UserDefaults.standard
         // 2、存储数据
@@ -27,11 +27,19 @@ extension HSUserDefaultsProtocol{
             defaults.set(vaule, forKey: key)
         }
         // 3、同步数据
-        defaults.synchronize();
+        defaults.synchronize()
     }
     /// 取出数据
-    func readWithNSUserDefaults(_ key:String)->Any? {
+    public func readWithNSUserDefaults(_ key:String)->Any? {
         let defaults = UserDefaults.standard
         return defaults.value(forKey: key)
+    }
+    /// 与账户绑定的信息的key需要加入电话号码作为一起作为key
+    public func createUserKey(_ key:String) -> String {
+        if HSUserKey.isEmpty {
+            return key
+        }else{
+            return "\(key)\(HSUserKey)"
+        }
     }
 }

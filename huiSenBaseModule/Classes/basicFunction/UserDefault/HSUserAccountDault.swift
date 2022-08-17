@@ -9,15 +9,7 @@ import UIKit
 
 public class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
     public static let standard = HSUserAccountDault()
-    
-    /// 与账户绑定的信息的key需要加入电话号码作为一起作为key
-    private func createUserKey(_ key:String) -> String {
-        if HSUserKey.isEmpty {
-            return key
-        }else{
-            return "\(key)\(HSUserKey)"
-        }
-    }
+        
     /// 主题模式
     public var appTheme: HSAppTheme {
         get{
@@ -86,6 +78,7 @@ public class HSUserAccountDault: NSObject, HSUserDefaultsProtocol {
             saveWithNSUserDefaults(newValue, createUserKey(HSUserDefaultsKey.APPUserDeviceInfoSaveKey))
         }
     }
+
     /// 选中的家庭(ID)
     public var chioceHomeId: String? {
         get{

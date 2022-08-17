@@ -53,21 +53,21 @@ let HSH5ComeBackActionMehod = "onBackPage"
 // MARK: --- 设备详情的相关API接口
 struct HSH5NetworkUrl {
     /// 获取H5压缩包最新版本信息
-    public static let getH5ZipInfoURLString = "/app/api/cui/check_update"
+    public static let getH5ZipInfoURLString = "/api/cui/check_update"
     /// 设备操作
-    public static let deviceOperationURLString = "/app/api/device/command"
+    public static let deviceOperationURLString = "/api/device/command"
     /// 设备的详细信息
-    public static let deviceDetailInfoURLString = "/app/api/device/info"
+    public static let deviceDetailInfoURLString = "/api/device/info"
     /// 获取设置的属性值
-    public static let devicePropertyURLString = "/app/api/device/attr_all"
+    public static let devicePropertyURLString = "/api/device/attr_all"
     /// 设备操作-- 全开/全关
-    public static let deviceOperationAllURLString = "/app/api/device/switch_command"
+    public static let deviceOperationAllURLString = "/api/device/switch_command"
     /// 删除设备
-    public static let deviceDelegateURLString = "/app/api/device/del"
+    public static let deviceDelegateURLString = "/api/device/del"
     /// 重启设备
-    public static let deviceRestartURLString = "/app/api/device/restart"
+    public static let deviceRestartURLString = "/api/device/restart"
     /// 设备信息
-    public static let deviceListURLString = "/app/api/device/list"
+    public static let deviceListURLString = "/api/device/list"
     /// 修改设备名称及房间
-    public static let updateDeviceURLString = "/app/api/device/update"
+    public static let updateDeviceURLString = "/api/device/update"
 }
