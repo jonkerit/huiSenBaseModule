@@ -33,12 +33,12 @@ class HSWebViewController: UIViewController {
         customNavView.titleView.text = titleString
         if HSAPPBaseUrl.isEmpty {
             #if DEBUG
-            HSAPPBaseUrl = "https://staging.huisensmart.com/apartment"
+            HSAPPBaseUrl = "https://staging.huisensmart.com/app"
             //    static let HSAPPBaseUrl = "http://106.15.107.104:7711"
             #elseif BATE
-            HSAPPBaseUrl = "https://staging.huisensmart.com/apartment"
+            HSAPPBaseUrl = "https://staging.huisensmart.com/app"
             #else
-            HSAPPBaseUrl = "https://api.huisensmart.com/apartment"
+            HSAPPBaseUrl = "https://api.huisensmart.com/app"
             #endif
         }
         // 清楚本地缓存

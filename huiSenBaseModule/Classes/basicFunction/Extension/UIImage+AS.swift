@@ -87,17 +87,30 @@ public extension AriSwift where Base: UIImage {
                 huiSenFrameWorkSourceBundle = sourceBundle
             }
             if #available(iOS 13.0, *) {
-                return UIImage.init(named: "\(name)@\(Int(UIScreen.main.scale))x.png", in: sourceBundle, with: nil) ?? UIImage()
+                guard let tempImage =  UIImage.init(named: "\(name)@\(Int(UIScreen.main.scale))x.png", in: sourceBundle, with: nil) else {
+                    huiSenFrameWorkSourceBundle = nil
+                    return UIImage()
+                }
+                return tempImage
             } else {
-                return UIImage.init(named: "\(name)@\(Int(UIScreen.main.scale))x.png", in: sourceBundle, compatibleWith: nil) ?? UIImage()
+                guard let tempImage = UIImage.init(named: "\(name)@\(Int(UIScreen.main.scale))x.png", in: sourceBundle, compatibleWith: nil) else {
+                    huiSenFrameWorkSourceBundle = nil
+                    return UIImage()
+                }
+                return tempImage
             }
         }
         return tempImage
     }
     
     static func getBundle(bundleName: String, swiftClass:  Swift.AnyClass)-> Bundle? {
+        
+        if let podBundlePath = Bundle(for: swiftClass.self).path(forResource: bundleName, ofType: "bundle"), let bundle = Bundle.init(path: podBundlePath) {
+            return bundle
+        }
         let frameworkBundle = Bundle.as.bundlePath(swiftClass: swiftClass, resource: "huiSenFrameWork", ofType: "framework")
         guard let sourcepath = frameworkBundle.path(forResource: bundleName, ofType: "bundle") else { return nil }
+        
         guard let sourceBundle = Bundle.init(path: sourcepath) else { return nil }
         return sourceBundle
     }
