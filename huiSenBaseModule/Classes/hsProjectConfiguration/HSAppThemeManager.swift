@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ObjectMapper
+//import ObjectMapper
 
 public let HSAppThemeModel = HSAppThemeManager.shared.themeColorModel
 
@@ -15,9 +15,12 @@ public class HSAppThemeManager {
     /// 保存主题模式
     /// - Parameter theme: 主题模式
     public static func saveTheme(_ theme:HSAppTheme) {
-        HSUserAccountDault.standard.appTheme = theme
         let themeManager = HSAppThemeManager.shared
-        themeManager.themeColorModel = Mapper<HSAppThemeColor>().map(JSON:  themeManager.colorJsonArray[theme.rawValue])!
+        HSUserAccountDault.standard.appTheme = theme
+        guard let mdoel = HSAppThemeColor.decode(fromDictionary: themeManager.colorJsonArray[theme.rawValue], to: HSAppThemeColor.self)else {
+            return
+        }
+        themeManager.themeColorModel = mdoel
     }
     
     /// 获取主题模式
@@ -42,7 +45,9 @@ public class HSAppThemeManager {
      }
     
     public lazy var themeColorModel: HSAppThemeColor = {
-        let mdoel = Mapper<HSAppThemeColor>().map(JSON: colorJsonArray[HSAppThemeManager.nowTheme().rawValue])!
+        guard let mdoel = HSAppThemeColor.decode(fromDictionary: colorJsonArray[HSAppThemeManager.nowTheme().rawValue], to: HSAppThemeColor.self)else {
+            return HSAppThemeColor()
+        }
         return mdoel
     }()
     
@@ -60,7 +65,7 @@ public class HSAppThemeManager {
 
 }
 
-public struct HSAppThemeColor: Mappable {
+public struct HSAppThemeColor: HSCoadble {
     // MARK: 字体颜色
     /// 红色-正常模式：FF6B6B
     public var wordMain: String = "FF6B6B"
@@ -75,46 +80,25 @@ public struct HSAppThemeColor: Mappable {
     
     // MARK:  背景颜色
     /// 红色-正常模式：FF6B6B
-    public var backGroundMain = "FF6B6B"
+    public var backGroundMain: String = "FF6B6B"
     /// 白色-正常模式：FFFFFF
-    public var backGroundLight = "FFFFFF"
+    public var backGroundLight: String = "FFFFFF"
     /// 浅灰色-正常模式：F7F7F7
-    public var backGroundGay = "F7F7F7"
+    public var backGroundGay: String = "F7F7F7"
     
     // MARK:  线颜色
     /// 线灰色-正常模式：F0F0F0
-    public var lineGay = "F0F0F0"
+    public var lineGay: String = "F0F0F0"
     /// 边框灰色-正常模式：D6D6D7
-    public var lineBordGay = "D6D6D7"
+    public var lineBordGay: String = "D6D6D7"
     
     // MARK:  图片渲染颜色
     /// 图片渲染红色-正常模式：FF6B6B
-    public var imageMain = "FF6B6B"
+    public var imageMain: String = "FF6B6B"
     /// 图片黑灰色-正常模式：333333
-    public var imageBlack = "333333"
+    public var imageBlack: String = "333333"
     /// 图片渲染灰色-正常模式：8c8c8c
-    public var imageGay = "8c8c8c"
+    public var imageGay: String = "8c8c8c"
     /// 图片渲染浅灰色-正常模式：D6D6D7
-    public var imageGayLight = "D6D6D7"
-    
-    public init?(map: Map) {
-        
-    }
-    
-    mutating public func mapping(map: Map) {
-        wordMain <- map["wordMain"]
-        wordBlack <- map["wordBlack"]
-        wordBlackLight <- map["wordBlackLight"]
-        wordGay <- map["wordGay"]
-        wordGayLight <- map["wordGayLight"]
-        backGroundMain <- map["backGroundMain"]
-        backGroundGay <- map["backGroundGay"]
-        backGroundLight <- map["backGroundLight"]
-        lineGay <- map["lineGay"]
-        lineBordGay <- map["lineBordGay"]
-        imageMain <- map["imageMain"]
-        imageBlack <- map["imageBlack"]
-        imageGay <- map["imageGay"]
-        imageGayLight <- map["imageGayLight"]
-    }
+    public var imageGayLight: String = "D6D6D7"
 }

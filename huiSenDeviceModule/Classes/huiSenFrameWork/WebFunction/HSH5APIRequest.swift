@@ -17,8 +17,8 @@ public class HSH5APIRequest: NSObject {
     /// - Returns: 请求
     public static func requstH5ApiData(apiName:String, parameters:Any?, completioned:@escaping HSCompletionStringClosure) {
             var patchURL = apiName
-            if !apiName.contains("app/api/") {
-                patchURL = "/app/api/\(apiName)"
+            if !apiName.contains("api/") {
+                patchURL = "/api/\(apiName)"
             }
             HSNetworkManager.sharedInstance.HSNetworkOutTime = 65.0
             HSNetworkManager.sharedInstance.requestHttp(URLString: patchURL, parameters: parameters, hethod:.post) { response in

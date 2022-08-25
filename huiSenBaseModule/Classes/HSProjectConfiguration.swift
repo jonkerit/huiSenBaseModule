@@ -22,7 +22,7 @@ public var HSAppToken = ""
 public var HSUserKey = ""
 // 定位SDK的位置
 #if huiSenFrameWork
-public var HSNowVCClass:Swift.AnyClass = HSWebOpenFunction.self
+public var HSNowVCClass:Swift.AnyClass = HSProgressHUD.self
 #else
-public var HSNowVCClass:Swift.AnyClass = UIViewController.self
+public var HSNowVCClass:Swift.AnyClass = HSProgressHUD.self
 #endif

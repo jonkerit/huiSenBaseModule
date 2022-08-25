@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import ObjectMapper
 
-public class HSDeviceModel: Mappable {
+public class HSDeviceModel: NSObject, HSCoadble {
     /// 设备id
     public var device_id : String = ""
     /// 产品id
@@ -28,49 +27,37 @@ public class HSDeviceModel: Mappable {
     /// 网关ID
     public var gateway: String = ""
     /// 设备属性
-    public var entry : [[String: Any]] = []
+//    public var entry : [[String: Any]] = []
     /// 设备属性的model数组
-    public var entryModelArray : [HSDeviceEntryModel] = []
+    public var entry : [HSDeviceEntryModel]?
     /// 非空则是开关的条目名称
-    public var isSwitch : Bool = false
+    public var is_switch : Bool = false
     /// 开关当前状态值 bool
-    public var switchList : [HSDeviceSwitchModel] = []
+    public var switch_list : [HSDeviceSwitchModel]?
     /// 是开关的情况下，是否是开启状态
-    public var isSwitchOpen: Bool = false
+    public var isSwitchOpen: Bool? = false
     /// 是灯的情况下，是否是开启状态
-    public var switchOpenDesc: String = ""
-    /// 网关状态-1，没有状态 0-加载中  1-在线 2-离线
-    public var distributionNetworkStatus: Int = -1
-    required public init?(map: Map) {
-        
-    }
-    
-    public func mapping(map: Map) {
-       device_id <- map["device_id"]
-       product_id <- map["product_id"]
-       device_name <- map["device_name"]
-       logo_url <- map["logo_url"]
-       room_id <- map["room_id"]
-       room_name <- map["room_name"]
-       status <- map["status"]
-       gateway <- map["gateway"]
-       entry <- map["Entry"]
-       entryModelArray <- map["Entry"]
-       isSwitch <- map["is_switch"]
-       switchList <- map["switch_list"]
-       distributionNetworkStatus <- map["distribution_network_status"]
+    public var switchOpenDesc: String? = ""
+    /// 网关状态 fasle: 加载中，true完成加载
+    public var distribution_network_status: Bool = false
 
-       isSwitchOpen = isOpen()
-       switchOpenDesc = createDesc()
+    public static func changeDeviceModelArray(_ rootData:[HSDeviceModel]) {
+        rootData.forEach { deviceModel in
+            deviceModel.switchOpenDesc = deviceModel.createDesc()
+            deviceModel.isSwitchOpen = deviceModel.isOpen()
+        }
     }
     /// 改变网关的状态
     public func changeGetwayStatus(_ status: Int) {
-        distributionNetworkStatus = status
+        distribution_network_status = true
         switchOpenDesc = createDesc()
      }
     
     public func isOpen() ->Bool {
-        for (_, model) in self.switchList.enumerated() {
+        if self.switch_list == nil {
+            return false
+        }
+        for (_, model) in self.switch_list!.enumerated() {
             if model.value {
                 return true
             }
@@ -79,18 +66,22 @@ public class HSDeviceModel: Mappable {
     }
     
     public func createDesc() ->String {
-        if distributionNetworkStatus == 0 {
+        if !distribution_network_status {
             return self.room_name+" | 加载中"
         }
         if !self.status {
             return self.room_name+" | 离线"
         }
-        if !self.isSwitch {
+        if !self.is_switch {
             return self.room_name+" | 在线"
         }
+        
         var tempString = "开启 "
         var closeNumber = 0
-        for (i, model) in self.switchList.enumerated() {
+        if self.switch_list == nil {
+            self.switch_list = []
+        }
+        for (i, model) in self.switch_list!.enumerated() {
             if model.value {
                 tempString = "\(tempString)\(i+1) "
             }else{
@@ -98,13 +89,13 @@ public class HSDeviceModel: Mappable {
             }
         }
         if closeNumber == 0 {
-            if self.switchList.count>1 {
+            if self.switch_list!.count>1 {
                 return self.room_name+" | 全开"
             }else{
                 return self.room_name+" | 开启"
             }
-        }else if closeNumber == self.switchList.count {
-            if self.switchList.count>1 {
+        }else if closeNumber == self.switch_list!.count {
+            if self.switch_list!.count>1 {
                 return self.room_name+" | 全关"
             }else{
                 return self.room_name+" | 关闭"
@@ -115,32 +106,16 @@ public class HSDeviceModel: Mappable {
     }
 }
 
-public class HSDeviceEntryModel: Mappable {
+public class HSDeviceEntryModel: NSObject, HSCoadble {
     /// 属性名
     public var entry : String = ""
     /// 属性值
     public var value : String = ""
-    required public init?(map: Map) {
-        
-    }
-    
-    public func mapping(map: Map) {
-       entry <- map["name"]
-       value <- map["value"]
-    }
 }
 
-public class HSDeviceSwitchModel: Mappable {
+public class HSDeviceSwitchModel: NSObject, HSCoadble {
     /// 属性名
     public var name : String = ""
     /// 属性值
     public var value : Bool = false
-    public required init?(map: Map) {
-        
-    }
-    
-    public func mapping(map: Map) {
-       name <- map["name"]
-       value <- map["value"]
-    }
 }

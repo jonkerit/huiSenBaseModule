@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import ObjectMapper
-//public typealias CompletionDeviceClosure = (HSResponse, String) -> Void
 
 class HSDeviceViewModel: NSObject {
     /// 设备列表
@@ -28,14 +26,11 @@ class HSDeviceViewModel: NSObject {
             guard (response.dataArray) != nil else {
                 completioned(response)
                 return }
-//            var tempArray = [[String: Any]]()
-//            for _ in 0..<20 {
-//                tempArray.append(contentsOf:response.dataArray!)
-//            }
-//            let model = Mapper<HSDeviceModel>().mapArray(JSONArray: tempArray)
-
-            let model = Mapper<HSDeviceModel>().mapArray(JSONArray: response.dataArray!)
-            response.data = model
+            guard let tempArray = HSDeviceModel.decode(fromArray: response.dataArray, to: HSDeviceModel.self) else {
+                completioned(response)
+                return }
+            HSDeviceModel.changeDeviceModelArray(tempArray)
+            response.data = tempArray
             completioned(response)
         }
     }
@@ -52,25 +47,6 @@ class HSDeviceViewModel: NSObject {
         HSH5APIRequest.requstH5ApiData(apiName: HSH5NetworkUrl.deviceDetailInfoURLString, parameters: parameters){ response, josnString in
             completioned(response, josnString)
         }
-        
-//        let request = HSDeviceDetailRequest()
-//        request.device_id = deviceID
-//        HSDefaultNetwork.request(request) {response in
-//            var jsonString: String?
-//            if response.code == 200 && response.dataDictionary != nil {
-//                jsonString = String.as.dictionaryToJSONString(response.dataDictionary!)
-//            }
-//            if jsonString == nil {
-//                let errorString = response.message ?? "数据请求失败"
-//                let errorDict = ["error":errorString]
-//                jsonString = String.as.dictionaryToJSONString(errorDict)
-//            }
-//            if jsonString == nil {
-//                jsonString = ""
-//            }
-//            completioned(response, jsonString ?? "")
-//        }
-//        return request
     }
     
     /// 操作设备
@@ -118,22 +94,6 @@ class HSDeviceViewModel: NSObject {
         HSH5APIRequest.requstH5ApiData(apiName: HSH5NetworkUrl.devicePropertyURLString, parameters: tempDict){ response, josnString in
             completioned(response, josnString)
         }
-//        let request = HSDevicePropertyRequest()
-//        request.device_id = deviceID
-//        request.entry = (entryDictionary["entry"] as? String) ?? nil
-//        HSDefaultNetwork.request(request) { response in
-//            var jsonString: String?
-//            if response.code == 200 && response.dataDictionary != nil {
-//                jsonString =  String.as.dictionaryToJSONString([request.entry ?? "" : response.dataDictionary as Any])
-//            }
-//            if jsonString == nil {
-//                let errorString = response.message ?? "数据请求失败"
-//                let errorDict = ["error":errorString]
-//                jsonString = String.as.dictionaryToJSONString(errorDict)
-//            }
-//            completioned(response, jsonString ?? "")
-//        }
-//        return request
     }
     
     /// 删除设备
@@ -148,14 +108,6 @@ class HSDeviceViewModel: NSObject {
         HSH5APIRequest.requstH5ApiData(apiName: HSH5NetworkUrl.deviceDelegateURLString, parameters: tempDict){ response, josnString in
             completioned(response)
         }
-        
-//        let request = HSDeviceDelegateRequest()
-//        request.device_id = deviceID
-//
-//        HSDefaultNetwork.request(request) { response in
-//            completioned(response)
-//        }
-//        return request
     }
     
     /// 重启设备
@@ -210,17 +162,14 @@ extension HSDeviceViewModel {
                 let data = jsonString!.data(using: String.Encoding.utf8)!
                 //把NSData对象转换回JSON对象
                 let json : Any! = try JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions.mutableContainers)
-                guard let tempDict = json as? [String:String] else { return [HSDeviceModel]() }
-                guard let tempArrayJson = tempDict[homeId] else { return [HSDeviceModel]() }
-                let tempData = tempArrayJson.data(using: String.Encoding.utf8)!
-                let tempJson : Any! = try JSONSerialization.jsonObject(with: tempData, options:JSONSerialization.ReadingOptions.mutableContainers)
-                guard let tempArray = tempJson as? [[String: Any]] else { return [HSDeviceModel]() }
-                let model = Mapper<HSDeviceModel>().mapArray(JSONArray: tempArray)
-
-                return model
+                guard let tempDict = json as? [String:String] else { return nil }
+                guard let tempArrayJson = tempDict[homeId] else { return nil }
+                guard let tempArray = HSDeviceModel.decode(fromArray: tempArrayJson, to: HSDeviceModel.self) else { return nil }
+                HSDeviceModel.changeDeviceModelArray(tempArray)
+                return tempArray
             } catch  {
             }
         }
-        return [HSDeviceModel]()
+        return nil
     }
 }
