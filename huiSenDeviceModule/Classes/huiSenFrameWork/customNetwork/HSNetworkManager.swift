@@ -289,15 +289,8 @@ extension HSNetworkManager {
             response.originData = originData
         }
         toJsonObject(response: response)
-        if error != nil {
-            let error = NSError(domain: "网络错误", code: 500, userInfo: [NSLocalizedDescriptionKey : response.message ?? "no network"])
-            response.error = error as NSError?
-            response.message = "no network"
-            response.code = 500
-        }else{
-            decode(request: urlRequest, response: response)
-        }
-                
+        decode(request: urlRequest, response: response)
+
         DispatchQueue.main.async {
             completionClosure(response)
             if response.code == 2007 || response.code == 300 {
@@ -331,14 +324,23 @@ extension HSNetworkManager {
     }
     
     private func decode(request:HSURLRequest?, response: HSFResponse) {
-        guard let tempDict = response.data as? [String: Any] else {
+        let t = HSNetworkQuery.getNetworkStatus()
+        if t == "no network" && response.error != nil {
             let error = NSError(domain: "网络错误", code: 500, userInfo: [NSLocalizedDescriptionKey : response.message ?? "no network"])
             response.error = error
             response.message = "no network"
             response.code = 500
+            return
+        }
+        guard let tempDict = response.data as? [String: Any] else {
+            let error = NSError(domain: "服务器错误", code: 400, userInfo: [NSLocalizedDescriptionKey : response.message ?? "服务器错误"])
+            response.error = error
+            response.message = "服务器错误"
+            response.code = 400
             return }
-        response.message = "no network"
-        response.code = 500
+
+        response.message = "服务器错误"
+        response.code = 400
 
         if let message = tempDict["err_msg"] as? String {
             response.message = message
@@ -351,10 +353,10 @@ extension HSNetworkManager {
                 response.data = dict["data"]
             }
         }else {
-            let error = NSError(domain: "网络错误", code: 500, userInfo: [NSLocalizedDescriptionKey : response.message ?? "no network"])
+            let error = NSError(domain: "服务器错误", code: 400, userInfo: [NSLocalizedDescriptionKey : response.message ?? "服务器错误"])
             response.error = error
-            response.message = "no network"
-            response.code = 500
+            response.message = "服务器错误"
+            response.code = 400
         }
     }
 }

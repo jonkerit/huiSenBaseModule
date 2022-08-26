@@ -24,7 +24,7 @@ public class HSResponse {
     
     public var fileURL: URL?
     
-    public var code: Int = 500
+    public var code: Int = 400
 
     init(request: HSRequest, urlRequest: URLRequest?, httpURLResponse: HTTPURLResponse?) {
         self.request = request

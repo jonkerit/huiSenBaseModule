@@ -25,7 +25,7 @@ public class HSFResponse {
     
     public var fileURL: URL?
     
-    public var code: Int = 500
+    public var code: Int = 400
 
     
     init(sessionTask: URLSessionTask?, urlRequest: HSURLRequest?, httpURLResponse: HTTPURLResponse?) {

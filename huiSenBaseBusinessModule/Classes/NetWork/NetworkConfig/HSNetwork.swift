@@ -557,15 +557,22 @@ extension HSNetwork {
     
     private func decode(request:HSRequest, response: HSResponse) {
         let t = HSNetworkQuery.getNetworkStatus()
-        guard let status = target.status, let dictionary = response.data as? [String: Any], t != "no network" else {
+        if t == "no network" && response.error != nil {
             let error = NSError(domain: target.host, code: 500, userInfo: [NSLocalizedDescriptionKey : response.message ?? "no network"])
             response.error = error
             response.message = "no network"
             response.code = 500
+            return
+        }
+        guard let status = target.status, let dictionary = response.data as? [String: Any] else {
+            let error = NSError(domain: target.host, code: 400, userInfo: [NSLocalizedDescriptionKey : response.message ?? "服务器错误"])
+            response.error = error
+            response.message = "服务器错误"
+            response.code = 400
             return }
         let statusValue = dictionary[status.codeKey] as! Int
         response.code = statusValue
-        response.message = "no network"
+        response.message = "服务器错误"
         if let messageKey = status.messageKey {
             response.message = dictionary[messageKey] as? String
         }
@@ -577,7 +584,7 @@ extension HSNetwork {
             }
         }
         else {
-            let error = NSError(domain: target.host, code: statusValue, userInfo: [NSLocalizedDescriptionKey : response.message ?? "网络错误"])
+            let error = NSError(domain: target.host, code: statusValue, userInfo: [NSLocalizedDescriptionKey : response.message ?? "服务器错误"])
             response.error = error
         }
     }
