@@ -4,6 +4,11 @@
 //
 //  Created by jonker.sun on 2022/8/25.
 //
+/**
+ Swift中的Codable使用与设置
+ https://blog.csdn.net/u010259906/article/details/119748827
+ https://juejin.cn/post/7100194774656745480
+ */
 
 import Foundation
 
@@ -55,7 +60,7 @@ public extension HSCoadble {
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .secondsSince1970
-            let data: T = try decoder.decode(T.self, from: decodeData) as! T
+            let data: T = try decoder.decode(T.self, from: decodeData)
             return data
         } catch {
 
@@ -63,7 +68,7 @@ public extension HSCoadble {
         return nil
     }
     
-    public static func decode<T: Decodable>(fromArray rootData: Any, to Model: T.Type) -> [T]? {
+    static func decode<T: Decodable>(fromArray rootData: Any, to Model: T.Type) -> [T]? {
         var decodeData: Data = Data()
         do {
             if let tempString = rootData as? String {
@@ -76,7 +81,7 @@ public extension HSCoadble {
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .secondsSince1970
-            let data: [T] = try decoder.decode([T].self, from: decodeData) as! [T]
+            let data: [T] = try decoder.decode([T].self, from: decodeData)
             return data
         } catch {
         }

@@ -85,8 +85,8 @@ public class HSURLRequest: NSObject {
                 parameterString = parameterString.addingPercentEncoding(withAllowedCharacters: charSet)!
             }
         }
-        
-        var tempURL = HSNetworkQuery.addQueryParameters(networkTarget.baseURLString+URLString)
+        let allPatchUrl = URLString.contains("http") ? URLString:networkTarget.baseURLString+URLString
+        var tempURL = HSNetworkQuery.addQueryParameters(allPatchUrl)
         if !parameterString.isEmpty {
             if tempURL.contains("?") {
                 tempURL = "\(tempURL)&\(parameterString)"

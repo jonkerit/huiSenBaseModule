@@ -138,13 +138,22 @@ class HSWebViewController: UIViewController {
             strongeSelf.comeBackAction()
         }
         customNavView.backgroundColor = UIColor.init(HSAppThemeModel.backGroundGay)
-        #if DEBUG
-        customNavView.createRightViewBar([moreButton,testButton], 15)
-        #elseif BATE
-        customNavView.createRightViewBar([moreButton,testButton], 15)
-        #else
-        customNavView.createRightViewBar([moreButton])
-        #endif
+        if HSWebOpenFunction.shared.isHaveDeviceMore {
+#if DEBUG
+            customNavView.createRightViewBar([moreButton,testButton], 15)
+#elseif BATE
+            customNavView.createRightViewBar([moreButton,testButton], 15)
+#else
+            customNavView.createRightViewBar([moreButton])
+#endif
+        }else{
+#if DEBUG
+            customNavView.createRightViewBar([testButton])
+#elseif BATE
+            customNavView.createRightViewBar([testButton])
+#else
+#endif
+        }
         finishButton.frame = CGRect(x: UIScreen.as.screenWidth-finishButton.as.width-15, y: UIScreen.as.statusBarHeight+(44 - finishButton.as.height)/2, width: finishButton.as.width, height: finishButton.as.height)
         customNavView.addSubview(finishButton)
 

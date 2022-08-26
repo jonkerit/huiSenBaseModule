@@ -37,29 +37,6 @@ public class HSH5APIRequest: NSObject {
                 completioned(response, jsonString!)
             }
         }
-//    @discardableResult
-
-//    static func requstH5ApiData(apiName:String, parameters:[String: Any]?, completioned:@escaping CompletionDeviceClosure) -> HSRequest {
-//        let patchURL = "/app/api/\(apiName)"
-//
-//        let requst = HSRequest.init(method: .post, URLString: nil, path:patchURL, parameters: parameters, parameterEncoding: JSONEncoding.default, headers: HSNetworkConfiguration.createHeader(isHaveToken: true))
-//        HSDefaultNetwork.request(requst) { response in
-//            var jsonString: String?
-//            if response.code == 200 && response.data != nil {
-//                jsonString = String.as.JSONObjcToJSONString(response.data!)
-//            }
-//            if response.code != 200 {
-//                let errorString = response.message ?? "数据请求失败"
-//                let errorDict = ["error":errorString]
-//                jsonString = String.as.dictionaryToJSONString(errorDict)
-//            }
-//            if jsonString == nil {
-//                jsonString = ""
-//            }
-//            completioned(response, jsonString ?? "")
-//        }
-//        return requst
-//    }
 }
 
 
