@@ -17,10 +17,10 @@ public class HSAppThemeManager {
     public static func saveTheme(_ theme:HSAppTheme) {
         let themeManager = HSAppThemeManager.shared
         HSUserAccountDault.standard.appTheme = theme
-        guard let mdoel = HSAppThemeColor.decode(fromDictionary: themeManager.colorJsonArray[theme.rawValue], to: HSAppThemeColor.self)else {
+        guard let model = HSAppThemeColor.decode(fromDictionary: themeManager.colorJsonArray[theme.rawValue], to: HSAppThemeColor.self)else {
             return
         }
-        themeManager.themeColorModel = mdoel
+        themeManager.themeColorModel = model
     }
     
     /// 获取主题模式
@@ -45,10 +45,10 @@ public class HSAppThemeManager {
      }
     
     public lazy var themeColorModel: HSAppThemeColor = {
-        guard let mdoel = HSAppThemeColor.decode(fromDictionary: colorJsonArray[HSAppThemeManager.nowTheme().rawValue], to: HSAppThemeColor.self)else {
+        guard let model = HSAppThemeColor.decode(fromDictionary: colorJsonArray[HSAppThemeManager.nowTheme().rawValue], to: HSAppThemeColor.self)else {
             return HSAppThemeColor()
         }
-        return mdoel
+        return model
     }()
     
     /// 配置各个模式下的颜色值
